@@ -1,3 +1,5 @@
+# TwitterSearch - https://github.com/ckoepp/TwitterSearch
+
 import csv, sys, re, datetime
 
 # TODO: look at auto graph generation with one of the python graph libraries
