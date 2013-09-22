@@ -23,29 +23,31 @@ Current it generates:
 ## Usage ##
 ### Sample code ###
 
-	```python
-	from toots import *
-	
-	db = TootsDB()
-	keywords = ["ECAWA"]
-	# harvest mode
-	db.get_new_tweets(keywords)
-	# process mode
-	t = db.retrieve("ECAWA")
-	tooter = Toots("ECAWA",t)
-	tooter.build_tweeters('test_tweeters.svg')
-	tooter.build_mentions('test_mentions.svg')
-	tooter.build_hashtags('test_hashtags.svg')
-	tooter.build_timeline('test_timeline.svg')
-	```
+```python
+from toots import *
+
+db = TootsDB()
+keywords = ["ECAWA"]
+# harvest mode
+db.get_new_tweets(keywords)
+# process mode
+t = db.retrieve("ECAWA")
+tooter = Toots("ECAWA",t)
+tooter.build_tweeters('test_tweeters.svg')
+tooter.build_mentions('test_mentions.svg')
+tooter.build_hashtags('test_hashtags.svg')
+tooter.build_timeline('test_timeline.svg')
+```
 
 ### Sample output ###
 For a very small set of data using the above code, this produces the following charts:
 
-![image](test_tweeters.svg)
-![image](test_mentions.svg)
-![image](test_hashtags.svg)
-![image](test_timeline.svg)
+![image](test_tweeters.png)
+![image](test_mentions.png)
+![image](test_hashtags.png)
+![image](test_timeline.png)
+
+(Apologies for the PNGs when this produces SVGs, but Github doesn't like showing them. Also in a separate issue, why is OSX so terrible for converting SVG->PNG? The only tools either seem to be crap or require X11/XQuartz.)
   
 ## Dependencies ##
 Currently this script depends on:
