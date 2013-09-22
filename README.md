@@ -42,10 +42,10 @@ tooter.build_timeline('test_timeline.svg')
 ### Sample output ###
 For a very small set of data using the above code, this produces the following charts:
 
-![image](test_tweeters.png)
-![image](test_mentions.png)
-![image](test_hashtags.png)
-![image](test_timeline.png)
+![image](test/test_tweeters.png)
+![image](test/test_mentions.png)
+![image](test/test_hashtags.png)
+![image](test/test_timeline.png)
 
 (Apologies for the PNGs when this produces SVGs, but Github doesn't like showing them. Also in a separate issue, why is OSX so terrible for converting SVG->PNG? The only tools either seem to be crap or require X11/XQuartz.)
   
