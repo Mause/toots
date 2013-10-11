@@ -2,3 +2,7 @@
 *.txt
 *.pyc
 *.pyo
+*.swp
+TwitterSearch
+toots.db
+new

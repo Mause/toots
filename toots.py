@@ -156,7 +156,7 @@ class Toots():
 
   def _get_mentions(self) -> dict:
     '''
-    Return a dictionary containing the number of times people were @mentioend.
+    Return a dictionary containing the number of times people were @mentioned.
     This includes reply tweets which have the handle as the first word.
     '''
     mentions = {}
@@ -232,7 +232,11 @@ class Toots():
     chart = pygal.HorizontalBar(show_legend=False, style=BlueStyle)
     chart.title = 'Top Tweeters ({})'.format(self.keyword)
     tweets = self._get_tweeters()
-    tweeterlist = sorted(tweets, key=lambda x: tweets[x])[:top]
+    tweeterlist = sorted(tweets, key=lambda x: tweets[x],reverse=True)[:top]
+    if self.DEBUG:
+      print("DEBUG: Tweeterlist") # DEBUG
+      for t in tweeterlist:
+        print("{}: {}".format(t,tweets[t]))
     chart.x_labels = tweeterlist
     tweeters = [tweets[x] for x in tweeterlist]
     chart.add("Tweeters", tweeters)
@@ -251,7 +255,11 @@ class Toots():
     chart = pygal.HorizontalBar(show_legend=False, style=BlueStyle)
     chart.title = 'Top @mentions ({})'.format(self.keyword)
     mentions = self._get_mentions()
-    mentionlist = sorted(mentions, key=lambda x: mentions[x])[:top]
+    mentionlist = sorted(mentions, key=lambda x: mentions[x],reverse=True)[:top]
+    if self.DEBUG:
+      print("DEBUG: Mentionlist") # DEBUG
+      for t in mentionlist:
+        print("{}: {}".format(t,mentions[t]))
     chart.x_labels = mentionlist
     m = [mentions[x] for x in mentionlist]
     chart.add("Mentions", m)
@@ -270,7 +278,11 @@ class Toots():
     chart = pygal.HorizontalBar(show_legend=False, style=BlueStyle)
     chart.title = 'Top #hashtags (not including {})'.format(self.keyword)
     hashtags = self._popular_tags()
-    hashlist = sorted(hashtags, key=lambda x: hashtags[x])[:top]
+    hashlist = sorted(hashtags, key=lambda x: hashtags[x],reverse=True)[:top]
+    if self.DEBUG:
+      print("DEBUG: Hashtags") # DEBUG
+      for t in hashtags:
+        print("{}: {}".format(t,hashtags[t]))
     chart.x_labels = hashlist
     hashes = [hashtags[x] for x in hashlist]
     chart.add("Hashtags", hashes)
@@ -287,7 +299,7 @@ class Toots():
     live embedding.
     '''
     chart = pygal.Bar(show_legend=True, style=RedBlueStyle, x_label_rotation=30, x_title='Hour')
-    chart.title = 'Tweet Time Distribution ({})'.format(self.keyword)
+    chart.title = 'Tweet Time Distribution ({}, GMT{}{})'.format(self.keyword,"+" if self.timezone >= 0 else "-", self.timezone)
     timeline = self._time_distribution()
 
     dates = sorted([x for x in timeline]) # list of dates
